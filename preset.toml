@@ -1,11 +1,11 @@
 [kiso]
 type = "preset"
 name = "default"
-version = "0.2.0"
-description = "Default preset — all general-purpose tools for a complete assistant"
+version = "0.3.0"
+description = "Default preset — general-purpose tools for a complete assistant"
 
 [kiso.preset]
-tools = ["websearch", "browser", "aider", "docreader", "transcriber", "ocr"]
+tools = ["browser", "aider", "docreader", "transcriber", "ocr"]
 recipes = []
 connectors = []
 
@@ -14,7 +14,6 @@ facts = []
 
 behaviors = [
     "When the user sends a file or mentions an uploaded document, use docreader to read it before proceeding.",
-    "For web research, prefer websearch for quick answers and browser for detailed page inspection.",
     "For code changes, use aider — do not write code via exec tasks.",
     "When the user sends a voice message or audio file, use transcriber to convert it to text before proceeding.",
     "When the user sends a photo or image, use ocr to extract text if it contains text, or describe to understand visual content.",
@@ -22,7 +21,7 @@ behaviors = [
 ]
 
 [kiso.preset.env]
-# Tools that require API keys will prompt during install.
-# websearch requires KISO_TOOL_WEBSEARCH_API_KEY (Brave Search).
-# aider requires KISO_TOOL_AIDER_API_KEY (LLM provider for code editing).
+# aider uses KISO_LLM_API_KEY by default (same as kiso). Override with KISO_TOOL_AIDER_API_KEY for a different provider.
 # transcriber and ocr use KISO_LLM_API_KEY (OpenRouter) — no extra keys needed.
+# browser has no API key requirement.
+# docreader has no API key requirement.
