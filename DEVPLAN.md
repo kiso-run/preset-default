@@ -41,7 +41,7 @@ preset.toml → kiso preset install → installs tools + injects behaviors
 - [x] Updated remote to `git@github.com:kiso-run/preset-default.git`
 - [x] Push to `kiso-run/preset-default`
 - [x] Core `registry.json` updated
-- [ ] Rename local directory `preset-basic` → `preset-default` (cosmetic, do manually)
+- [x] Rename local directory `preset-basic` → `preset-default` (cosmetic, do manually)
 
 **Add tools:**
 - [x] Added `transcriber` to tools list
