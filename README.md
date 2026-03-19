@@ -1,6 +1,6 @@
-# preset-basic
+# preset-default
 
-Starter kit for Kiso — installs the core tools for a general-purpose AI assistant.
+Default preset for Kiso — installs all general-purpose tools for a complete AI assistant.
 
 ## What's included
 
@@ -10,23 +10,28 @@ Starter kit for Kiso — installs the core tools for a general-purpose AI assist
 | **browser** | Browser automation (navigate, screenshot, interact) |
 | **aider** | AI-powered code editing |
 | **docreader** | Read PDF, DOCX, XLSX, CSV, and plain text files |
+| **transcriber** | Transcribe voice messages and audio files to text |
+| **ocr** | Extract text from photos, screenshots, receipts, whiteboards |
 
 ## Behaviors
 
-The preset configures three behavioral guidelines:
+The preset configures six behavioral guidelines:
 
 - **Document awareness**: When the user sends a file, use docreader first
 - **Research strategy**: websearch for quick answers, browser for deep inspection
 - **Code editing**: use aider for code changes, not exec tasks
+- **Voice messages**: use transcriber to convert audio to text before proceeding
+- **Image text**: use ocr to extract text from photos, or describe for visual content
+- **Scanned PDFs**: when docreader finds no text, convert pages to images and use ocr
 
 ## Install
 
 ```bash
-kiso preset install basic
+kiso preset install default
 ```
 
 This will:
-1. Install all four tools (clone repos, set up venvs, run deps.sh)
+1. Install all six tools (clone repos, set up venvs, run deps.sh)
 2. Inject the behavioral guidelines into the session knowledge
 3. Prompt for required API keys (websearch, aider)
 
@@ -37,12 +42,12 @@ This will:
 | websearch | `KISO_TOOL_WEBSEARCH_API_KEY` | [Brave Search API](https://brave.com/search/api/) |
 | aider | `KISO_TOOL_AIDER_API_KEY` | Your LLM provider API key |
 
-Set via `kiso env set <KEY> <VALUE>`.
+**transcriber** and **ocr** use `KISO_LLM_API_KEY` (OpenRouter) — the same key kiso already uses. No extra configuration needed.
 
 ## Remove
 
 ```bash
-kiso preset remove basic
+kiso preset remove default
 ```
 
 Removes the behavioral guidelines. Tools are kept (remove individually with `kiso tool remove <name>`).

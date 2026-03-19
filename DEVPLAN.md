@@ -35,27 +35,27 @@ preset.toml → kiso preset install → installs tools + injects behaviors
 ## M4 — Rename basic → default + add transcriber, ocr
 
 **Rename:**
-- [ ] Rename `name` in preset.toml: `basic` → `default`
-- [ ] Update description: "Default preset — all general-purpose tools for a complete assistant"
-- [ ] Update README.md title, install commands, description
-- [ ] Update remote: `git remote set-url origin git@github.com:kiso-run/preset-default.git`
-- [ ] Push to new repo `kiso-run/preset-default`
-- [ ] Update core `registry.json`: rename `basic` → `default`, update description
-- [ ] Rename local directory `preset-basic` → `preset-default`
+- [x] Renamed `name` in preset.toml: `basic` → `default`, version 0.1.0 → 0.2.0
+- [x] Updated description: "Default preset — all general-purpose tools for a complete assistant"
+- [x] Updated README.md: title, tool table (6 tools), behaviors (6), install commands
+- [x] Updated remote to `git@github.com:kiso-run/preset-default.git`
+- [x] Push to `kiso-run/preset-default`
+- [x] Core `registry.json` updated
+- [ ] Rename local directory `preset-basic` → `preset-default` (cosmetic, do manually)
 
 **Add tools:**
-- [ ] Add `transcriber` to tools list (voice messages → text via Gemini)
-- [ ] Add `ocr` to tools list (image → text via Gemini vision)
+- [x] Added `transcriber` to tools list
+- [x] Added `ocr` to tools list
 
 **Update behaviors:**
-- [ ] Add behavior: "When the user sends a voice message or audio file, use transcriber to convert it to text before proceeding."
-- [ ] Add behavior: "When the user sends a photo or image, use ocr to extract text if the image contains text, or describe to understand visual content."
-- [ ] Update docreader behavior to mention OCR fallback: "When docreader reports no extractable text in a PDF (scanned document), convert pages to images and use ocr."
+- [x] Added voice message → transcriber behavior
+- [x] Added photo/image → ocr behavior
+- [x] Added scanned PDF → ocr fallback behavior
 
 **Validation:**
-- [ ] `validate_preset_manifest()` returns no errors
-- [ ] All 6 tools exist in registry.json
-- [ ] Push to `kiso-run/preset-default`
+- [x] `validate_preset_manifest()` returns no errors
+- [x] All 6 tools exist in registry.json (websearch, browser, aider, docreader, transcriber, ocr)
+- [x] `load_preset()` loads: name=default, 6 tools, 6 behaviors
 
 ## Known Issues
 
