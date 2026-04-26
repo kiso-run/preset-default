@@ -1,27 +1,22 @@
 [kiso]
 type = "preset"
 name = "default"
-version = "0.3.0"
-description = "Default preset — general-purpose tools for a complete assistant"
+version = "0.4.0"
+description = "Default persona preset — knowledge facts and behaviours that pair with the kiso/core default MCP preset."
 
 [kiso.preset]
-tools = ["browser", "aider", "docreader", "transcriber", "ocr"]
-recipes = []
-connectors = []
+# v0.4.0 (2026-04-25): the wrapper / recipe / connector subsystems
+# were retired in kiso/core Phase 4 (M1504, M1502). MCP servers and
+# skills are now managed separately (`kiso/presets/default.mcp.json`
+# + skill installs). What lives here is purely the persona layer:
+# default behaviours and any seeded knowledge facts.
 
 [kiso.preset.knowledge]
 facts = []
 
 behaviors = [
-    "When the user sends a file or mentions an uploaded document, use docreader to read it before proceeding.",
-    "For code changes, use aider — do not write code via exec tasks.",
-    "When the user sends a voice message or audio file, use transcriber to convert it to text before proceeding.",
-    "When the user sends a photo or image, use ocr to extract text if it contains text, or describe to understand visual content.",
-    "When docreader reports no extractable text in a PDF (scanned document), convert pages to images and use ocr on each page.",
+    "When the user attaches a file (audio, image, document), use the message-attachment-receiver skill flow: read it through the right MCP, then re-plan with the extracted text as the user's actual message.",
+    "For code changes, call the kiso-aider MCP — never write code via exec heredocs.",
+    "When kiso-docreader returns no extractable text from a PDF (scanned document), fall back to kiso-ocr on the rendered pages.",
+    "Prefer kiso-search (web search via Sonar) for any external information lookup; do not improvise via curl/wget.",
 ]
-
-[kiso.preset.env]
-# aider uses KISO_LLM_API_KEY by default (same as kiso). Override with KISO_TOOL_AIDER_API_KEY for a different provider.
-# transcriber and ocr use KISO_LLM_API_KEY (OpenRouter) — no extra keys needed.
-# browser has no API key requirement.
-# docreader has no API key requirement.
