@@ -23,7 +23,7 @@ preset.toml → kiso preset install → installs tools + injects behaviors
 
 - [x] Created `kiso-run/preset-basic` repo on GitHub (public)
 - [x] `git init`, add remote, push
-- [ ] Verify `kiso preset install default` works end-to-end on VPS (needs Docker)
+- [ ] Verify `kiso preset install default` works end-to-end on VPS (needs Docker). *Manual integration test — requires a configured kiso instance + Docker; not suitable for autonomous execution. Run by maintainer with: `kiso instance create test`, `kiso instance use test`, `kiso preset install default`, then check that all 6 tools install and behaviors are loaded into the instance's session knowledge.*
 
 ## M3 — Validate manifest against core ✅
 
